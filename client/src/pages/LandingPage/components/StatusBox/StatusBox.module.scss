@@ -1,0 +1,134 @@
+.wrapper {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2000;
+  width: 280px;
+  transition: all .5s ease-in-out !important;
+  transform: translate3d(0, 0, 0) !important;
+
+  @media screen and (max-width: 480px) {
+    top: 10px;
+  }
+}
+
+.hasPaddingTop {
+  transform: translate3d(0, 50px, 0) !important;
+}
+
+.title {
+  padding-right: 52px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
+}
+
+.toggleButton,
+.closeButton {
+  position: absolute;
+  top: 8px;
+}
+
+.toggleButton {
+  right: 34px;
+  width: 24px;
+  height: 24px;
+}
+
+.closeButton {
+  right: 6px;
+}
+
+.toggleButton svg {
+  position: relative;
+  top: -2px;
+  font-size: 22px;
+}
+
+.closeButton svg {
+  font-size: 18px;
+}
+
+.content {
+  margin-top: 16px;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.legendItemCircle {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background-color: #d35400;
+}
+
+.legendItemLabel {
+  font-size: 14px;
+  color: #333;
+}
+
+.list {
+  padding: 0;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.listItem {
+  font-size: 12px;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 4px;
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid #dedede;
+  cursor: pointer;
+}
+
+.navButton:hover .navButtonLabel,
+.navButton:hover .navButtonIcon {
+  color: #1E74BB;
+}
+
+.navButtonLabel {
+  font-size: 14px;
+  transition: all 200ms ease-in-out;
+}
+
+.navButtonIcon {
+  font-size: 20px;
+  color: #777;
+  transition: all 200ms ease-in-out;
+}
+
+.textContent {
+  max-height: 210px;
+  overflow-y: scroll;
+}
+
+.textContent p {
+  font-size: 14px;
+}

@@ -1,0 +1,57 @@
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  transform: translateX(-50%) translateY(-50%);
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+}
+
+.contentWrapper {
+  padding: 0 16px;
+
+  @media screen and (max-width: 420px) {
+    padding: 0 10px;
+  }
+}
+
+.title {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #444;
+
+  @media screen and (max-width: 420px) {
+    margin-top: 18px;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+}
+
+.info {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+}
+
+.info a {
+  font-weight: 700;
+  color: #1E74BB;
+}
+
+.formControl {
+  margin-bottom: 16px;
+}
+
+.actionsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 20px;
+}

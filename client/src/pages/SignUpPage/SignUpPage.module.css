@@ -1,0 +1,30 @@
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.contentWrapper {
+  padding: 0 16px;
+}
+
+.title {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #444;
+}
+
+.formControl {
+  margin-bottom: 16px;
+}
+
+.actionsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}

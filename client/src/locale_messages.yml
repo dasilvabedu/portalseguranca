@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    attributes:
+      user:
+        name: Nome completo
+        password: Senha
+        phone: Telefone
+        profile: Perfil
+        status: Status
+    models:
+      user: Usuário
+  attributes:
+    created_at: Data de criação
+    name: Nome
+    updated_at: Data de modificação
+  errors:
+    messages:
+      custom:
+        format: Formato inválido

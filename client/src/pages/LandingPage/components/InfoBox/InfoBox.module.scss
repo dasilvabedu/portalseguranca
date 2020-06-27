@@ -1,0 +1,131 @@
+.wrapper {
+  position: absolute;
+  bottom: 46px;
+  right: 10px;
+  z-index: 2000;
+  width: 420px;
+
+  @media screen and (max-width: 480px) {
+    width: auto;
+    bottom: 16px;
+    left: 10px;
+    right: 10px;
+  }
+}
+
+.title {
+  padding-right: 52px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
+}
+
+.toggleButton,
+.closeButton {
+  position: absolute;
+  top: 8px;
+}
+
+.toggleButton {
+  right: 34px;
+  width: 24px;
+  height: 24px;
+}
+
+.closeButton {
+  right: 6px;
+}
+
+.toggleButton svg {
+  position: relative;
+  top: -2px;
+  font-size: 22px;
+}
+
+.closeButton svg {
+  font-size: 18px;
+}
+
+.content {
+  max-height: 330px;
+  overflow-y: scroll;
+  margin-top: 16px;
+
+  @media screen and (max-width: 480px) {
+    max-height: 160px;
+  }
+}
+
+.content p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #444;
+}
+
+.dataList {
+  margin: 0;
+  padding: 0;
+}
+
+.dataListItem {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #DEDEDE;
+}
+
+.dataListItemHeader {
+  display: flex;
+  align-items: center;
+}
+
+.dataListItemTitle {
+  flex: 1;
+  font-size: 14px;
+  color: #444;
+  transition: color 200ms ease-in-out;
+}
+
+.dataListItemTitleActive {
+  color: #1E74BB;
+}
+
+.dataListItemInfoButton svg,
+.dataListItemLocationButton svg {
+  font-size: 18px;
+}
+
+.dataListItemLocationButton {
+  margin-left: 4px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.infoListItem {
+  width: 50%;
+  margin-bottom: 8px;
+}
+
+.infoListItemLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.infoListItemValue {
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+}

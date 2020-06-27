@@ -1,0 +1,115 @@
+.wrapper {
+  position: relative;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 16px;
+  background-color: white;
+}
+
+.logoImage {
+  display: block;
+  max-width: 132px;
+  height: auto;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+.link {
+  margin-right: 24px;
+  color: #808080;
+  transition: color 200ms ease-in-out;
+}
+
+.activeLink,
+.link:hover {
+  color: #318EDA;
+}
+
+.signInButton {
+  margin-left: 32px;
+  color: #808080;
+}
+
+.signInButton:hover {
+  color: #318EDA;
+}
+
+.signInButton::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  height: 100%;
+  width: 1px;
+  background-color: #DEDEDE;
+}
+
+.signInButtonIcon {
+  font-size: 20px !important;
+}
+
+.signInButtonText {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.locationIcon {
+  color: #808080;
+  margin-right: 12px;
+}
+
+.autocompleteOptionTitle {
+  display: block;
+  font-weight: 700;
+}
+
+.autocompleteOptionSubtitle {
+  color: #777
+}
+
+.userInfoWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  margin-left: 20px;
+}
+
+.userInfoWrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #DEDEDE;
+}
+
+.userInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 14px;
+  color: #318EDA;
+}
+
+.userInfo svg {
+  margin-right: 6px;
+  font-size: 20px;
+}
+
+.exitButton {
+  padding: 6px;
+  color: #808080;
+}
+
+.exitButtonIcon {
+  font-size: 20px;
+}
