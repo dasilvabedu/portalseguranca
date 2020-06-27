@@ -1,0 +1,102 @@
+version: '3.7'
+volumes:
+  app:
+    name: ecostage_plataforma_geocart_app
+  yarn-cache:
+    external: true
+    name: ecostage_yarn_cache
+services:
+  rails: &rails_service
+    build:
+      context: docker/rails
+    command: 'bundle exec rails s -b 0.0.0.0'
+    environment:
+      DEV_DATABASE_URL: 'postgres://root@postgis/plataforma_geocart_development'
+      PRIMARY_TEST_DATABASE_URL: 'postgres://root@postgis/plataforma_geocart_primary_test'
+      SECONDARY_TEST_DATABASE_URL: 'postgres://root@postgis/plataforma_geocart_secondary_test'
+      SPRING_SOCKET: '/mnt/persistent/spring.sock'
+      SPRING_PIDFILE: '/mnt/persistent/spring.pid'
+      BASE_URL_ON_EMAIL_LINKS: 'http://localhost:8003'
+    depends_on:
+      - postgis
+      - spring
+    init: true
+    tty: true
+    stdin_open: true
+    working_dir: /app/server
+    ports:
+      - '3003:3000'
+    volumes:
+      - '.:/app'
+      - 'app:/mnt/persistent:delegated'
+  locale-unifier:
+    build:
+      context: docker/locale-unifier
+    environment:
+      MERGED_LOCALE_FILENAME: locale_messages.yml
+    volumes:
+      - './server/config/locales:/files'
+      - './client/src:/destination'
+    init: true
+  spring:
+    <<: *rails_service
+    command: 'bundle exec spring server'
+    depends_on: []
+    tty: false
+    stdin_open: false
+    ports: []
+  node:
+    build:
+      context: docker/node
+    command: yarn start
+    environment:
+      PORT: 8030
+      GENERATE_SOURCEMAP: 'true'
+      REACT_APP_GEOSERVER_BASE_URL: https://portal.geocart.xyz/geoserver
+      REACT_APP_GEOSERVER_WORKSPACE_NAME: portalseg
+    init: true
+    working_dir: /app/client
+    depends_on:
+      - locale-unifier
+    ulimits:
+      nproc: 10000000
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    ports:
+      - '8003:8030'
+    volumes:
+      - '.:/app'
+      - 'app:/mnt/persistent:delegated'
+      - 'yarn-cache:/usr/local/share/.cache/yarn:delegated'
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - '11003:80'
+  postgis:
+    image: 'mdillon/postgis:11-alpine'
+    environment:
+      # The PGDATA variable CAN'T be the default /var/lib/postgresql/data
+      #   because it is declared as a VOLUME in the official image's
+      #   Dockerfile (https://git.io/fpj5m), which when not "overridden" by
+      #   a -v, is roughly equivalent to "-v /path" and creates an anonymous
+      #   volume (https://success.docker.com/article/different-types-of-volumes)
+      #
+      # Since we don't have a volume mount exactly in /var/lib/postgresql/data
+      #   (because we have a single volume to make sure we don't clutter the
+      #   list of volumes in the user's machine, and by mounting it to
+      #   /var/lib/postgresql only we can add just a single directory to that
+      #   volume, instead of a lot of loose directories and files), we have to
+      #   change the PGDATA value to use a non-VOLUME'd directory.
+      #
+      # See also: https://stackoverflow.com/q/41637505
+      PGDATA: /var/lib/postgresql/pgdata
+      POSTGRES_DB: plataforma_geocart_development
+      POSTGRES_USER: root
+    ports:
+      - '5003:5432'
+    working_dir: /app
+    volumes:
+      - '.:/app'
+      - 'app:/var/lib/postgresql:delegated'
+      - 'app:/var/run/postgresql:delegated'
