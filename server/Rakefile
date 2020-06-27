@@ -1,0 +1,23 @@
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+
+require_relative 'config/application'
+require 'graphql/rake_task'
+
+Rake.add_rakelib 'app/lib/tasks'
+
+schema_output_file = ENV.fetch('SCHEMA_DUMP_OUTPUT_FILE', 'schema.graphql')
+
+if schema_output_file[0] == '/'
+  directory = '/'
+  schema_output_file = schema_output_file[1..-1]
+else
+  directory = '.'
+end
+
+Rails.application.load_tasks
+GraphQL::RakeTask.new(
+  directory: directory,
+  idl_outfile: schema_output_file,
+  schema_name: 'GeocartSchema'
+)

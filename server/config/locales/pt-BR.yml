@@ -1,0 +1,5 @@
+pt-BR:
+  errors:
+    messages:
+      custom:
+        format: 'Formato inválido'

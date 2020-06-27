@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      * {
+        text-align: center;
+        margin: auto;
+        text-decoration: none;
+        link-style: none;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .mail {
+        background: #eee;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #BAD04D;
+        color: white;
+        width: 20rem;
+        height: 3rem;
+        line-height: 3rem;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mail">
+      <%= yield %>
+    </div>
+  </body>
+</html>

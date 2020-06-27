@@ -1,0 +1,12 @@
+google:
+  service: GCS
+  project: BucketProject
+  credentials: <%= Rails.root.join("config/secrets/attachments.json") %>
+  bucket: Bucket Name
+
+local:
+  service: Disk
+  root: <%= Rails.root.join('storage') %>
+
+database:
+  service: Database

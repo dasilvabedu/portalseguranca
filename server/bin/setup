@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'optparse'
+
+# path to your application root.
+APP_ROOT = File.expand_path('..', __dir__)
+
+ARGS_RULES = {
+  skip_database_create: ['-d', '--skip-db-create', 'Skips the creation of the databases']
+}
+
+def setup
+  Dir.chdir APP_ROOT do
+    args = parse_args(ARGS_RULES)
+
+    puts 'Installing ruby dependencies'
+    system! 'gem install bundler:2.0.1 --conservative'
+    system! 'bundle install --jobs 20'
+
+    puts 'Setting up the database'
+    system! 'bundle exec rails db:setup' unless args[:skip_database_create]
+    system! 'bundle exec rails db:migrate db:seed'
+  end
+end
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+def parse_args(opts_info = {})
+  args = {}
+  OptionParser.new do |opts|
+    opts_info.each do |arg_key, options|
+      opts.on(*options) do |o|
+        args[arg_key] = o
+      end
+    end
+  end.parse!
+  args
+end
+
+setup
