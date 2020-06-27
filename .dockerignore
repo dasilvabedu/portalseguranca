@@ -1,0 +1,21 @@
+# Here we try to negate everything first and then allow only the server
+# and client directories, and then finally we ignore what we don't need
+# inside the build context
+
+**
+!/server/**
+!/client/**
+
+/server/.bundle/**
+/server/log/**
+/server/tmp/**
+/server/.byebug_history
+/server/config/credentials/production.key
+/server/config/credentials/staging.key
+
+/client/node_modules/**
+/client/coverage/**
+/client/build/**
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
